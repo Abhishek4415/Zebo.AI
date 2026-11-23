@@ -4,7 +4,7 @@ export const getUser = async (req, res) => {
     try {
         const userId = req.userId; // Get the user ID from the request object
         //adding .select("-password") so that the user's password is not returned to the frontend.
-        const user = await User.findOne({email : req.userId}).select("-password"); // Find the user in the database by ID
+        const user = await User.findOne({ _id: req.userId }).select("-password"); // Find the user in the database by ID
         if (!user) {
             return res.status(404).json({ message: "User not found" });
         }
