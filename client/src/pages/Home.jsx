@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import Navbar from '../components/Navbar';
+import  Navbar from '../components/Navbar';
 import { motion } from 'framer-motion';
+import Footer from '../components/Footer';
+import { useNavigate } from 'react-router-dom';
+
 import { 
   FiArrowRight, 
   FiPlay, 
@@ -43,6 +46,7 @@ const Typewriter = ({ words }) => {
 };
 
 function Home() {
+  const navigate = useNavigate();
   return (
     <div className="min-h-screen bg-gray-50 font-sans selection:bg-blue-200">
       <Navbar />
@@ -87,7 +91,7 @@ function Home() {
             transition={{ duration: 0.5, delay: 0.3 }}
             className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto"
           >
-            <button className="group relative flex items-center justify-center gap-2 bg-black text-white px-8 py-4 rounded-full font-semibold text-lg overflow-hidden transition-all hover:scale-105 shadow-xl hover:shadow-black/20">
+            <button onClick={() => navigate("/interview")} className="group relative flex items-center justify-center gap-2 bg-black text-white px-8 py-4 rounded-full font-semibold text-lg overflow-hidden transition-all hover:scale-105 shadow-xl hover:shadow-black/20">
               <span className="relative z-10 flex items-center gap-2">
                 Start Interview <FiMic />
               </span>
@@ -126,6 +130,7 @@ function Home() {
 
         </div>
       </main>
+     <Footer /> 
     </div>
   );
 }

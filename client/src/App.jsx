@@ -8,7 +8,7 @@ import serverUrl from './config.js';
 import { useDispatch } from 'react-redux';
 import { setUserData } from './redux/userSlice.js';
 import History from './pages/History.jsx';
-
+import InterviewPage from './pages/InterviewPage.jsx';
 
 function App() {
   //get user
@@ -36,6 +36,8 @@ function App() {
       <Route path='/' element = {<Home/>} />
       <Route path='/auth' element = {<Auth/>} />
       <Route path='/history' element = {<History/>} />
+      <Route path="/interview" element={<InterviewPage />} />
+    
     </Routes>
   )
 }
