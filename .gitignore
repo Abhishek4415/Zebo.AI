@@ -25,6 +25,25 @@ dist-ssr
 
 #security
 .env
+.env.*
+!.env.example
+dist/
+coverage/
+logs
+*.log
 .docx
 .doc
 .tmp
+
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfvars
+!*.example.tfvars
+
+# IDE
+.vscode/
+
+# Kubernetes secrets
+kubernetes/secret.yaml

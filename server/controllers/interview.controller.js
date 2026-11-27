@@ -3,7 +3,7 @@ import User from "../models/user.model.js";
 import Interview from "../models/interview.model.js";
 import { askAi } from "../services/openRouter.service.js";
 import { extractPdfText } from "../services/pdf.service.js";
-
+import logger from "../config/logger.js";
 const INTERVIEW_COST = 50;
 
 const parseAI = (response) =>
@@ -408,7 +408,7 @@ export const submitAnswer = async (req, res) => {
             ];
 
             evaluation = parseAI(await askAi(messages));
-            console.log("AI Evaluation:", evaluation);
+            logger.info("AI evaluation completed");
 
             if (
                 !["score", "confidence", "communication", "correctness"]
@@ -460,12 +460,15 @@ export const submitAnswer = async (req, res) => {
 
         return res.json(updated.questions[questionIndex]);
 
-    }catch (error) {
-            console.error("Submit Answer Error:", error);
-        
-            return res.status(500).json({
-                message: "Failed to evaluate answer"
-            });
+    }
+    catch (error) {
+        logger.error("Answer evaluation failed", {
+            error: error.message
+        });
+    
+        return res.status(500).json({
+            message: "Failed to evaluate answer"
+        });
     }
 };
 
