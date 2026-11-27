@@ -47,3 +47,6 @@ logs
 
 # Kubernetes secrets
 kubernetes/secret.yaml
+
+# Microsoft Office temporary files
+~$*
