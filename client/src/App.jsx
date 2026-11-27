@@ -9,7 +9,8 @@ import { useDispatch } from 'react-redux';
 import { setUserData } from './redux/userSlice.js';
 import History from './pages/History.jsx';
 import InterviewPage from './pages/InterviewPage.jsx';
-
+import LiveInterview from './pages/LiveInterview.jsx';
+import InterviewReport from "./pages/InterviewReport";
 function App() {
   //get user
   const dispatch = useDispatch();
@@ -37,6 +38,9 @@ function App() {
       <Route path='/auth' element = {<Auth/>} />
       <Route path='/history' element = {<History/>} />
       <Route path="/interview" element={<InterviewPage />} />
+      <Route path="/interview/live/:id" element={<LiveInterview />}/>
+      <Route path="/interview/report/:id" element={<InterviewReport />}/>
+
     
     </Routes>
   )

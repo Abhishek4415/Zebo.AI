@@ -2,7 +2,14 @@ import jwt from "jsonwebtoken";
 
 export const isAuth = async (req, res, next) => {
   try {
-    let {token} = req.cookies || {};
+    const authHeader = req.headers.authorization;
+    
+    // let {token} = req.cookies || {};
+    const token = req.cookies?.token ||
+    (authHeader?.startsWith("Bearer ")
+        ? authHeader.split(" ")[1]
+        : null);
+        
     if (!token) {
       return res.status(401).json({ message: "No token provided" });
     }
@@ -20,3 +27,4 @@ export const isAuth = async (req, res, next) => {
 
     }
 }
+
